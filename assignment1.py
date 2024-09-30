@@ -140,7 +140,7 @@ class GameManager():
             self.SCREEN_WIDTH - 80, self.FONT_TOP_MARGIN * 4)
         self.screen.blit(miss_text, miss_text_pos)
         # Update the player's score
-        current_score_string = "Score: " + str(self.score)
+        current_score_string = "Hit: " + str(self.score)
         score_text = self.font_obj.render(
             current_score_string, True, (255, 255, 255))
         score_text_pos = score_text.get_rect()
@@ -279,14 +279,14 @@ class GameManager():
                     self.bg.finished()
                     self.screen.blit(self.bg.img_background, (0, 0))
                     # Update the final score
-                    final_score_string = "SCORE: " + str(self.score)
+                    final_score_string = "Hit: " + str(self.score)
                     final_score_text = self.font_obj_finish.render(
                         final_score_string, True, (255, 255, 255))
                     final_score_text_pos = final_score_text.get_rect()
                     final_score_text_pos.center = (640, 240)
                     self.screen.blit(final_score_text, final_score_text_pos)
                     # Update the final miss
-                    final_miss_string = "MISS: " + str(self.miss)
+                    final_miss_string = "Miss: " + str(self.miss)
                     final_miss_text = self.font_obj_finish.render(
                         final_miss_string, True, (255, 255, 255))
                     final_miss_text_pos = final_miss_text.get_rect()
@@ -300,7 +300,7 @@ class GameManager():
                     else:
                         rate = round(
                             self.score/(self.score + self.miss) * 100, 2)
-                    final_rate_string = "RATE: " + str(rate) + ' %'
+                    final_rate_string = "Hit rate: " + str(rate) + ' %'
                     final_rate_text = self.font_obj_finish.render(
                         final_rate_string, True, (255, 255, 255))
                     final_rate_text_pos = final_rate_text.get_rect()
