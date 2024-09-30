@@ -363,16 +363,9 @@ class GameManager():
                     self.game_over = True
                     # Set the theme sound
                     pygame.mixer.music.unload()
-                    pygame.mixer.music.load("music/halloween-time.mp3")
+                    pygame.mixer.music.load("music\halloween-time.mp3")
                     pygame.mixer.music.play(-1)
                     pygame.mixer.music.set_volume(0.1)
-                else:
-                    if (int(self.time_left - (pygame.time.get_ticks() - s_time - 5)/1000) == 10):
-                        pygame.mixer.music.unload()
-                        pygame.mixer.music.load("sounds/count_down.wav")
-                        pygame.mixer.music.play(-1)
-                        pygame.mixer.music.set_volume(0.1)
-                    self.update(s_time)
 
                 # # Set coordinates counter
                 # self.screen.blit(pygame.image.load(
@@ -392,7 +385,7 @@ class SoundEffect:
     def __init__(self):
         self.mainTrack = pygame.mixer.music.load("music/halloween-time.mp3")
         self.countDownSound = pygame.mixer.Sound('sounds/count.wav')
-        self.hammerSound = pygame.mixer.Sound('sounds/hammering.wav')
+        self.hammerSound = pygame.mixer.Sound('sounds/death_sound.mp3')
         self.popSound = pygame.mixer.Sound("sounds/zombie_growl.mp3")
         self.missSound = pygame.mixer.Sound("sounds/miss.wav")
         self.levelSound = pygame.mixer.Sound("sounds/point.wav")
@@ -422,14 +415,14 @@ class SoundEffect:
 
     def playMiss(self):
         self.missSound.play()
-        self.missSound.set_volume(0.2)
+        self.missSound.set_volume(0)
 
     def stopMiss(self):
         self.missSound.stop()
 
     def playLevelUp(self):
         self.levelSound.play()
-        self.levelSound.set_volume(0.2)
+        self.levelSound.set_volume(0)
 
     def stopLevelUp(self):
         self.levelSound.stop()
