@@ -45,7 +45,7 @@ class GameManager():
 
         # Variables for the main game
         self.time_left = 51
-        self.count_down = 6
+        self.count_down = 4
         self.count_down_time = self.count_down
         self.score = 0
         self.miss = 0
@@ -56,9 +56,9 @@ class GameManager():
         self.game_over = False
 
         # Font object for displaying text
-        self.font_obj = pygame.font.SysFont('britannic', 26)
+        self.font_obj = pygame.font.SysFont('britannic', 20)
         self.font_obj_finish = pygame.font.SysFont('britannic', 44)
-        self.font_coor = pygame.font.SysFont('britannic', 14)
+        # self.font_coor = pygame.font.SysFont('britannic', 14)
 
         # Possible hole positions
         self.hole_positions = [
@@ -125,37 +125,29 @@ class GameManager():
         self.screen.blit(pygame.image.load(
             './images/background4.png'), (1010, 0))
         # Update time
-        current_time_string = "TIME: " + \
-            str(int(self.time_left - (pygame.time.get_ticks() - s_time)/1000))
+        current_time_string = str(int(self.time_left - (pygame.time.get_ticks() - s_time)/1000)) + "s remain"
         time_text = self.font_obj.render(
             current_time_string, True, (255, 255, 255))
         time_text_pos = time_text.get_rect()
         time_text_pos.center = (self.SCREEN_WIDTH - 80, self.FONT_TOP_MARGIN)
         self.screen.blit(time_text, time_text_pos)
-        # Update the player's score
-        current_score_string = "SCORE: " + str(self.score)
-        score_text = self.font_obj.render(
-            current_score_string, True, (255, 255, 255))
-        score_text_pos = score_text.get_rect()
-        score_text_pos.center = (
-            self.SCREEN_WIDTH - 80, self.FONT_TOP_MARGIN * 3)
-        self.screen.blit(score_text, score_text_pos)
         # Update the player's miss
-        current_miss_string = "MISS: " + str(self.miss)
+        current_miss_string = "Miss: " + str(self.miss)
         miss_text = self.font_obj.render(
             current_miss_string, True, (255, 255, 255))
         miss_text_pos = miss_text.get_rect()
         miss_text_pos.center = (
             self.SCREEN_WIDTH - 80, self.FONT_TOP_MARGIN * 4)
         self.screen.blit(miss_text, miss_text_pos)
-        # Update the player's level
-        current_level_string = "LEVEL: " + str(self.level)
-        level_text = self.font_obj.render(
-            current_level_string, True, (255, 255, 255))
-        level_text_pos = level_text.get_rect()
-        level_text_pos.center = (
-            self.SCREEN_WIDTH - 80, self.FONT_TOP_MARGIN * 5)
-        self.screen.blit(level_text, level_text_pos)
+        # Update the player's score
+        current_score_string = "Score: " + str(self.score)
+        score_text = self.font_obj.render(
+            current_score_string, True, (255, 255, 255))
+        score_text_pos = score_text.get_rect()
+        score_text_pos.center = (
+            self.SCREEN_WIDTH - 80, self.FONT_TOP_MARGIN * 3)
+        self.screen.blit(score_text, score_text_pos)
+        
 
     # Start the game's main loop
     def start(self):
@@ -174,8 +166,8 @@ class GameManager():
         # Create rect of the play_box and play_again components
         play_box = pygame.Rect(570, 330, 270, 140)
         play_again = []
-        play_again.append(pygame.image.load('./images/playagain1.png'))
-        play_again.append(pygame.image.load('./images/playagain2.png'))
+        play_again.append(pygame.image.load('./images/again.png'))
+        play_again.append(pygame.image.load('./images/again.png'))
         play_again_rect = pygame.Rect(550, 520, 187, 57)
 
         # To make the function called just once
@@ -249,7 +241,6 @@ class GameManager():
             if self.start_game == False:
                 if play_box.collidepoint(pygame.mouse.get_pos()):
                     if hover == 0:
-                        pygame.mouse.set_cursor(pygame.cursors.broken_x)
                         self.bg.img_background = pygame.image.load(
                             './images/start.png')
                         self.screen.blit(self.bg.img_background, (0, 0))
@@ -383,16 +374,16 @@ class GameManager():
                         pygame.mixer.music.set_volume(0.1)
                     self.update(s_time)
 
-                # Set coordinates counter
-                self.screen.blit(pygame.image.load(
-                    './images/background5.png'), (1120, 670))
-                coordinates_x, coordinates_y = pygame.mouse.get_pos()
-                textCoor = self.font_coor.render(
-                    'x: ' + str(coordinates_x) + ', y: ' + str(coordinates_y), True, (255, 255, 255))
-                textCoor_pos = textCoor.get_rect()
-                textCoor_pos.centerx = self.SCREEN_WIDTH - 70
-                textCoor_pos.centery = self.SCREEN_HEIGHT - 20
-                self.screen.blit(textCoor, textCoor_pos)
+                # # Set coordinates counter
+                # self.screen.blit(pygame.image.load(
+                #     './images/background5.png'), (1120, 670))
+                # coordinates_x, coordinates_y = pygame.mouse.get_pos()
+                # textCoor = self.font_coor.render(
+                #     'x: ' + str(coordinates_x) + ', y: ' + str(coordinates_y), True, (255, 255, 255))
+                # textCoor_pos = textCoor.get_rect()
+                # textCoor_pos.centerx = self.SCREEN_WIDTH - 70
+                # textCoor_pos.centery = self.SCREEN_HEIGHT - 20
+                # self.screen.blit(textCoor, textCoor_pos)
 
             pygame.display.update()
 
